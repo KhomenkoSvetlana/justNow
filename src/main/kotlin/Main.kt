@@ -1,5 +1,5 @@
 fun main(args: Array<String>) {
-    val result = wasOnline(180)
+    val result = wasOnline(65006)
     println("Пользователь был в сети : $result")
 
 }
@@ -13,21 +13,23 @@ fun wasOnline(time: Int) = when (time) {
     else -> "давно"
 }
 
-fun calculationMinutes(time: Int) {
+fun calculationMinutes(time: Int): String {
     val timeMinutes = (time / 60).toInt()
-    when ((time / 60).toInt() % 10) {
-        1 -> timeMinutes.toString() + "минуту"
-        in 2..4 -> timeMinutes.toString() + "минуты"
-        in 5..9 -> timeMinutes.toString() + "минут"
-        0 -> timeMinutes.toString() + "минут"
+    val minutes = when ((time / 60).toInt() % 10) {
+        1 -> "$timeMinutes минуту"
+        in 2..4 -> "$timeMinutes минуты"
+        in 5..9 -> "$timeMinutes минут"
+        else -> "$timeMinutes минут"
     }
+    return minutes
 }
 
-fun calculationHours(time: Int) {
+fun calculationHours(time: Int): String {
     val timeHour = (time / 3600).toInt()
-    when ((time / 3600).toInt() % 10) {
-        1 -> timeHour.toString() + "час"
-        in 2..4 -> timeHour.toString() + "часа"
-        in 5..9 -> timeHour.toString() + "часов"
+    val hour = when ((time / 3600).toInt() % 10) {
+        in 2..4 -> "$timeHour часа"
+        in 5..9 -> "$timeHour часов"
+        else -> "$timeHour час"
     }
+    return hour
 }
